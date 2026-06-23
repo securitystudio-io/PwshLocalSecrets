@@ -1,0 +1,98 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-06-23T00:00:00Z",
+    "tools": [
+      {
+        "vendor": "Manual",
+        "name": "Claude Code",
+        "version": "claude-sonnet-4-6"
+      }
+    ],
+    "component": {
+      "type": "library",
+      "bom-ref": "xSecret@1.0.0",
+      "name": "xSecret",
+      "version": "1.0.0",
+      "description": "PowerShell module for managing DPAPI-encrypted JSON secrets in the user profile.",
+      "licenses": [],
+      "purl": "pkg:generic/xSecret@1.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "framework",
+      "bom-ref": "powershell@7.6.3",
+      "name": "PowerShell",
+      "version": "7.6.3",
+      "description": "PowerShell Core runtime. Provides CmdletBinding, PSCredential, ConvertTo-Json, ConvertFrom-Json, and all core cmdlets used by xSecret.",
+      "publisher": "Microsoft Corporation",
+      "purl": "pkg:generic/microsoft/powershell@7.6.3",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://github.com/PowerShell/PowerShell"
+        }
+      ]
+    },
+    {
+      "type": "framework",
+      "bom-ref": "dotnet@10.0.9",
+      "name": ".NET",
+      "version": "10.0.9",
+      "description": "Microsoft .NET runtime. Provides System.Text.Encoding, System.Convert, and the base class libraries consumed by xSecret.",
+      "publisher": "Microsoft Corporation",
+      "purl": "pkg:generic/microsoft/dotnet@10.0.9",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://dotnet.microsoft.com"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "bom-ref": "System.Security.Cryptography.ProtectedData@10.0.0.0",
+      "name": "System.Security.Cryptography.ProtectedData",
+      "version": "10.0.0.0",
+      "description": "Provides ProtectedData.Protect and ProtectedData.Unprotect, the DPAPI wrappers used to encrypt and decrypt secret files.",
+      "publisher": "Microsoft Corporation",
+      "purl": "pkg:nuget/System.Security.Cryptography.ProtectedData@10.0.0.0",
+      "externalReferences": [
+        {
+          "type": "website",
+          "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "xSecret@1.0.0",
+      "dependsOn": [
+        "powershell@7.6.3",
+        "dotnet@10.0.9",
+        "System.Security.Cryptography.ProtectedData@10.0.0.0"
+      ]
+    },
+    {
+      "ref": "powershell@7.6.3",
+      "dependsOn": [
+        "dotnet@10.0.9"
+      ]
+    },
+    {
+      "ref": "System.Security.Cryptography.ProtectedData@10.0.0.0",
+      "dependsOn": [
+        "dotnet@10.0.9"
+      ]
+    },
+    {
+      "ref": "dotnet@10.0.9",
+      "dependsOn": []
+    }
+  ]
+}
